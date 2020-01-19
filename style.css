@@ -341,6 +341,7 @@ header .container {
     flex-direction: column;
     align-items: center;
     padding: 18px 0;
+    overflow: hidden;
 }
 
 .wrapper-dropdown .dropdown .dropdown-panel {
@@ -348,7 +349,14 @@ header .container {
     align-items: center;
     flex-grow: 1;
     width: 93%;
-    padding-bottom: 18px;
+}
+
+.wrapper-dropdown .dropdown .dropdown-panel > * {
+    pointer-events: none;
+}
+
+.wrapper-dropdown .dropdown .dropdown-menu > *:not(a) {
+    pointer-events: none;
 }
 
 .wrapper-dropdown .dropdown .dropdown-panel h3 {
@@ -370,6 +378,15 @@ header .container {
 .wrapper-dropdown .dropdown .dropdown-menu {
     display: flex;
     width: 93%;
+    visibility: hidden;
+    max-height: 0;
+    transition: 0.3s ease;
+}
+
+.wrapper-dropdown .dropdown.visible .dropdown-menu {
+    padding-top: 18px;
+    visibility: visible;
+    max-height: inherit;
 }
 
 .wrapper-dropdown .dropdown .dropdown-menu div p {
@@ -386,10 +403,6 @@ header .container {
     background-repeat: no-repeat;
 }
 
-.dropdown.hidden .dropdown-menu {
-    display:none;
-  }
-
 form {
     background-color: red;
     width: 37.5%;
@@ -404,60 +417,4 @@ footer {
 
 .fa {
     color: rgba(255, 255, 255, 0.502);
-}
-
-.accordionWrapper {
-    padding: 30px;
-    background: #fff;
-    float: left;
-    width: 80%;
-    box-sizing: border-box;
-    margin: 10%;
-    box-shadow: 0 1.5em 85px 0 rgba(0, 0, 0, 0.2);
-}
-
-.accordionItem {
-    float: left;
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    font-family: 'Open-sans', Arial, sans-serif;
-}
-
-.accordionItemHeading {
-    cursor: pointer;
-    margin: 0px 0px 10px 0px;
-    padding: 10px;
-    background: #2980b9;
-    color: #fff;
-    width: 100%;
-    border-radius: 3px;
-    box-sizing: border-box;
-}
-
-.close .accordionItemContent {
-    height: 0px;
-    transition: height 1s ease-out;
-    -webkit-transform: scaleY(0);
-    -o-transform: scaleY(0);
-    -ms-transform: scaleY(0);
-    transform: scaleY(0);
-    float: left;
-    display: block;
-}
-
-.open .accordionItemContent {
-    padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    width: 100%;
-    margin: 0px 0px 10px 0px;
-    display: block;
-    box-sizing: border-box;
-}
-
-.open .accordionItemHeading {
-    margin: 0px;
-    background-color: #bdc3c7;
-    color: #7f8c8d;
 }
