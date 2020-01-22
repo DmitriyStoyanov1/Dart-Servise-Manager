@@ -340,7 +340,6 @@ header .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 18px 0;
     overflow: hidden;
 }
 
@@ -349,6 +348,7 @@ header .container {
     align-items: center;
     flex-grow: 1;
     width: 93%;
+    padding: 18px 0;
 }
 
 .wrapper-dropdown .dropdown .dropdown-panel > * {
@@ -384,7 +384,7 @@ header .container {
 }
 
 .wrapper-dropdown .dropdown.visible .dropdown-menu {
-    padding-top: 18px;
+    padding-bottom: 18px;
     visibility: visible;
     max-height: inherit;
 }
@@ -401,6 +401,122 @@ header .container {
     background-image: url(images/mid-section-background.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+}
+
+.customers-section .container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.customers-posts-wrapper {
+    width: 670px;
+    height: 450px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.customers-reviews-wrapper {
+    width: 468px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.customers-reviews-wrapper h2 {
+    font-size: 35px;
+    color: white;
+    font-weight: var(--semibold);
+    line-height: 1.2;
+    padding-bottom: 13px;
+
+}
+
+.customers-reviews-wrapper div a {
+    background-color: var(--main-color);
+    color: white;
+    padding: 0 18px;
+}
+
+.customers-reviews-wrapper p {
+    color: white;
+    font-weight: var(--semibold);
+    padding-bottom: 70px;
+}
+
+.customer {
+    display: flex;
+    position: absolute;
+    transition: 0.5s ease;
+}
+
+.customer img {
+    padding-right: 34px;
+}
+
+.customer h3 {
+    font-size: 18px;
+    font-weight: var(--bold);
+    color: var(--main-color);
+}
+
+.customer p {
+    color: #78909c;
+    font-style: italic;
+}
+
+.customer.customer1 {
+    margin-top: 45px;
+}
+
+.padding-top {
+    padding-top: 260px;
+}
+
+.padding-top2 {
+    padding-top: 45px;
+}
+
+.customer.customer2 {
+    margin-top: 260px;
+}
+
+.arrow {
+    text-align: center;
+    z-index: 1;
+}
+
+.arrow img {
+    padding-left: 100px;
+    cursor: pointer;
+}
+
+.arrow.arrow1 {
+    padding-bottom: 27px;
+}
+
+.arrow.arrow2 {
+    padding-top: 27px;
+}
+
+.customer .person-info .person {
+    display: flex;
+}
+
+.customer .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-container {
+    background-color: white;
+    padding: 25px;
+    border-radius: 5px;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.15);
 }
 
 form {

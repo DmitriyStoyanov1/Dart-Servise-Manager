@@ -164,7 +164,7 @@
     </div>
   </div>
 
-  <section>
+  <section class="top-bottom-align">
 
     <div class="title text-align-center">
 
@@ -202,9 +202,9 @@
 
       <div class="dropdown">
         <div class="dropdown-panel">
-          <div><img src="images/trending_up.png"></div>
+          <div><img src="images/mail.png"></div>
           <div>
-            <h3 class="h3">Statistics</h3>
+            <h3 class="h3">Inbox</h3>
           </div>
           <div><img src="images/arrow_drop_down.png"></div>
         </div>
@@ -224,9 +224,9 @@
 
       <div class="dropdown">
         <div class="dropdown-panel">
-          <div><img src="images/trending_up.png"></div>
+          <div><img src="images/group.png"></div>
           <div>
-            <h3 class="h3">Statistics</h3>
+            <h3 class="h3">Team</h3>
           </div>
           <div><img src="images/arrow_drop_down.png"></div>
         </div>
@@ -246,9 +246,9 @@
 
       <div class="dropdown">
         <div class="dropdown-panel">
-          <div><img src="images/trending_up.png"></div>
+          <div><img src="images/settings.png"></div>
           <div>
-            <h3 class="h3">Statistics</h3>
+            <h3 class="h3">Settings</h3>
           </div>
           <div><img src="images/arrow_drop_down.png"></div>
         </div>
@@ -268,9 +268,9 @@
 
       <div class="dropdown">
         <div class="dropdown-panel">
-          <div><img src="images/trending_up.png"></div>
+          <div><img src="images/rss_feed.png"></div>
           <div>
-            <h3 class="h3">Statistics</h3>
+            <h3 class="h3">Feed</h3>
           </div>
           <div><img src="images/arrow_drop_down.png"></div>
         </div>
@@ -299,46 +299,80 @@
 
       <div class="customers-reviews-wrapper">
 
-        <h2>What our customers
+        <h2>What our customers<br>
           have to say about us.</h2>
 
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
           dolore magna</p>
 
-        <button>GET STARTED</button>
+        <div>
+          <a href="#" class="button shadow">GET STARTED</a>
+        </div>
 
       </div>
 
       <div class="customers-posts-wrapper">
 
-        <img>
+        <div class="arrow arrow1">
+          <img src="images/keyboard_arrow_up.png">
+        </div>
 
-        <div>
+        <div class="customer customer1">
 
-          <h3>John Doe</h3>
+          <div class="person-info">
 
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
+            <div class="person">
+
+              <div class="image-container first">
+                <img src="images/user1.png">
+              </div>
+
+              <div class="content-container">
+
+                <h3>John Doe</h3>
+
+                <p class="p">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="customer customer2">
+
+          <div class="person-info">
+
+            <div class="person">
+
+              <div class="image-container second">
+                <img src="images/user2.png">
+              </div>
+
+              <div class="content-container">
+
+                <h3>Khalessi</h3>
+
+                <p class="p">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                  tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea</p>
+
+              </div>
+
+            </div>
+
+          </div>
 
         </div>
 
-        <img>
-
-        <div>
-
-          <h3>Khalessi</h3>
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco
-            laboris nisi ut aliquip ex ea</p>
-
+        <div class="arrow arrow2">
+          <img src="images/keyboard_arrow_down.png">
         </div>
 
       </div>
-
-    </div>
 
   </section>
 
@@ -456,55 +490,42 @@
 
   </footer>
 
-  <div class="accordionWrapper">
-    <div class="accordionItem open">
-      <h2 class="accordionItemHeading">About accordions</h2>
-      <div class="accordionItemContent">
-        <p>JavaScript accordions let you squeeze a lot of content into a small space in a Web page.</p>
-        <p>This simple accordion degrades gracefully in browsers that don't support JavaScript or CSS.</p>
-      </div>
-    </div>
-
-    <div class="accordionItem close">
-      <h2 class="accordionItemHeading">Accordion items</h2>
-      <div class="accordionItemContent">
-        <p>A JavaScript accordion is made up of a number of expandable/collapsible items. Only one item is ever
-          shown at a time.</p>
-        <p>You can include any content you want inside an accordion item. Here's a bullet list:</p>
-        <ul>
-          <li>List item #1</li>
-          <li>List item #2</li>
-          <li>List item #3</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="accordionItem close">
-      <h2 class="accordionItemHeading">How to use a JavaScript accordion</h2>
-      <div class="accordionItemContent">
-        <p>Click an accordion item's heading to expand it. To collapse the item, click it again, or click another
-          item heading.</p>
-      </div>
-    </div>
-  </div>
-
   <script>
     const dropdownList = document.querySelector('.wrapper-dropdown');
-    const toggleDropdown = dropdown => dropdown.classList.toggle('visible');
 
-    dropdownList.addEventListener('click', (event) => {
-      const { target } = event;
-
-      if(target.classList.contains('dropdown')){
-        toggleDropdown(target);
-      } else if(target.classList.contains('dropdown-menu')) {
-        return;
+    function toggleOpenClosed(event) {
+      console.log(event.target);
+      if (event.target.className === 'dropdown-panel') {
+        event.target.parentNode.classList.toggle('visible');
       }
+    }
 
-      const parent = target.parentNode;
+    dropdownList.addEventListener('click', toggleOpenClosed);
 
-      toggleDropdown(parent);
-    });
+
+    const arrowUp = document.querySelector('.arrow.arrow1');
+    const arrowDown = document.querySelector('.arrow.arrow2');
+
+    const customer1 = document.querySelector('.customer.customer1');
+    const customer2 = document.querySelector('.customer.customer2');
+
+    function reverse(event) {
+      if(customer1.classList.contains('padding-top') && customer2.classList.contains('padding-top2')) {
+        customer1.classList.remove('padding-top');
+        customer2.classList.remove('padding-top2');
+        customer1.style.marginTop = '45px';
+        customer2.style.marginTop = '260px';
+      } else {
+        customer1.classList.add('padding-top');
+        customer2.classList.add('padding-top2');
+        customer1.style.marginTop = '0px';
+        customer2.style.marginTop = '0px';
+      }
+    }
+
+    arrowUp.addEventListener('click', reverse);
+    arrowDown.addEventListener('click', reverse);
+
 
   </script>
 
