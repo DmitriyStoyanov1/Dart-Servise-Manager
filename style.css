@@ -397,7 +397,7 @@ header .container {
 }
 
 .customers-section {
-    height: 500px;
+    padding: 32px 0;
     background-image: url(images/mid-section-background.jpg);
     background-size: cover;
     background-repeat: no-repeat;
@@ -412,7 +412,6 @@ header .container {
 
 .customers-posts-wrapper {
     width: 670px;
-    height: 450px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -447,14 +446,26 @@ header .container {
     padding-bottom: 70px;
 }
 
-.customer {
-    display: flex;
-    position: absolute;
-    transition: 0.5s ease;
+.slider-container {
+    height: 300px;
+    overflow: hidden;
 }
 
-.customer img {
-    padding-right: 34px;
+.slider-container .slider-stage {
+    transition: all 0.25s ease 0s;
+}
+
+.slider-container .slide {
+}
+
+.slider-container .slide + .slide {
+    margin-top: 20px;
+}
+
+
+.customer {
+    display: flex;
+    transition: 0.5s ease;
 }
 
 .customer h3 {
@@ -494,22 +505,34 @@ header .container {
     cursor: pointer;
 }
 
-.arrow.arrow1 {
+.arrow.arrowUp {
     padding-bottom: 27px;
 }
 
-.arrow.arrow2 {
+.arrow.arrowDown {
     padding-top: 27px;
 }
 
 .customer .person-info .person {
     display: flex;
+    align-items: center;
 }
 
 .customer .image-container {
+    flex-shrink: 0;
+    min-width: 0;
+    margin-right: 18px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.customer .image-container > img {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
 }
 
 .content-container {
