@@ -60,6 +60,7 @@ h1, h2, h3, p, ul {
     font-weight: var(--semibold);
     font-size: var(--main-titles-font-size);
     color: var(--main-color);
+    padding-bottom: 13px;
 }
 
 .h3 {
@@ -542,11 +543,180 @@ header .container {
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.15);
 }
 
-form {
-    background-color: red;
+.team {
+    width: 41.5%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.team-members {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 65px;
+    padding-bottom: 20px;
+    position: relative;
+    height: 280px;
+}
+
+.first-member-start-position {
+    left: 0px;
+    transition: 0.8s ease;
+}
+
+.first-member-center-position {
+    left: 173px;
+    transition: 0.8s ease;
+}
+
+.first-member-right-position {
+    right: -20px;
+    transition: 0.8s ease;
+}
+
+.second-member-center-position {
+    right: 126px;
+    transition: 0.8s ease;
+}
+
+.second-member-start-position {
+    left: -16px;
+    transition: 0.8s ease;
+}
+
+.second-member-right-position {
+    right: -35px;
+    transition: 0.8s ease;
+}
+
+.third-member-right-position {
+    right: 0px;
+    transition: 0.8s ease;
+}
+
+.third-member-center-position {
+    right: 173px;
+    transition: 0.8s ease;
+}
+
+.third-member-start-position {
+    left: 0px;
+    transition: 0.8s ease;
+}
+
+.team-members div {
+    position: absolute;
+}
+
+.team-members .new-slides img {
+    transition: 0.3s ease;
+    border: 2px solid black;
+}
+
+.team.text-align-center p {
+    color: var(--light-text-color);
+}
+
+.team.text-align-center .member-discription p {
+    color: var(--text-color);
+}
+
+.team.text-align-center .member-discription h3 {
+    font-size: var(--sub-titles-font-size);
+    color: var(--main-color);
+    font-weight: var(--bold);
+    padding-bottom: 12px;
+}
+
+.slider-members-content {
+    height: 105px;
+}
+
+.member-discription {
+    height: 105px;
+    overflow: hidden;
+}
+
+.slider-members-content .slider-member{
+    width: 508px;
+}
+
+.social-networks {
+    color: var(--text-color);
+    font-size: var(--sub-titles-font-size);
+    padding-top: 22px;
+}
+
+.social-networks i:not(:last-of-type) {
+    padding-right: 17px;
+}
+
+.team-members div:not(:last-of-type) {
+    padding-right: 20px;
+}
+
+.contact-wrapper .title.text-align-center p {
+    color: var(--main-color);
+    font-weight: var(--regular);
+}
+
+.form {
     width: 37.5%;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 45px;
+}
+
+form input {
+    width: 46%;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+form input:first-child,
+form input:nth-child(3) {
+    margin-right: 33px;
+}
+
+
+.form-stilization {
+    border-radius: 5px;
+    border-color: var(--main-color);
+    font-size: 14px;
+    color: var(--main-color);
+    font-weight: var(--medium);
+    padding-left: 19px;
+    border-width: 1px;
+}
+
+form textarea {
+    width: 100%;
+    height: 150px;
+    padding-top: 15px;
+}
+
+.form-sending-data {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 19px;
+}
+
+.form-sending-data .checkbox {
+    display: flex;
+}
+
+.form-sending-data .button {
+    padding: 0 40px;
+    background-color: #1de9b6;
+    color: white;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.15);
+    font-size: 16px;
+}
+
+.checkbox input {
+    border-width: 2px;
+    border-color: var(--main-color);
 }
 
 footer {
