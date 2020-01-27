@@ -479,15 +479,20 @@
           eiusmod tempor incididunt ut labore et dolore magna</p>
 
       </div>
-
-      <div class="team-members">
-        <div class="new-slides first-member first-member-start-position">
+      <div class="team-members" style="grid-template-areas: 'lora max dima anton egor';">
+        <div class="new-slide" data-user="lora" style="grid-area: lora;">
           <img src="images/Ellipse 3 copy 2.png">
         </div>
-        <div class="new-slides second-member second-member-center-position">
+        <div class="new-slide" data-user="max" style="grid-area: max;">
+          <img src="images/Ellipse 3 copy 2.png">
+        </div>
+        <div class="new-slide new-slide-active" data-user="dima" style="grid-area: dima;">
           <img src="images/team-member.png">
         </div>
-        <div class="new-slides third-member third-member-right-position">
+        <div class="new-slide" data-user="anton" style="grid-area: anton;">
+          <img src="images/Ellipse 3 copy 2.png">
+        </div>
+        <div class="new-slide" data-user="egor" style="grid-area: egor;">
           <img src="images/Ellipse 3 copy.png">
         </div>
       </div>
@@ -495,37 +500,10 @@
       <div class="member-discription">
 
         <div class="slider-members-content">
-
           <div class="slider-member">
-
-          <h3>Kamila S</h3>
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magnaLorem
-            ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt </p>
-
+            <h3 id="sliderUserName"></h3>
+            <p id="sliderUserDescription"></p>
           </div>
-
-          <div class="slider-member">
-
-          <h3>Sophie Turner</h3>
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magnaLorem
-            ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt </p>
-
-          </div>
-
-          <div class="slider-member">
-
-          <h3>Maxim</h3>
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magnaLorem
-            ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt </p>
-
-          </div>
-
         </div>
 
       </div>
@@ -674,29 +652,86 @@
     arrowUp.addEventListener('click', () => slide('up'));
     arrowDown.addEventListener('click', () => slide('down'));
 
-    //Code for crazy slider!
+    //Code for mega crazy slider
+    document.addEventListener('DOMContentLoaded', () => {
+      // Объект с юзерами. Ключ объекта - имя, привязан к dom элементу в разметке самого слайдера через data-аттрибут
+      const USERS = {
+        lora: {
+          name: 'Lora',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magnaLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt',
+        },
+        max: {
+          name: 'Max',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magnaLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt',
+        },
+        dima: {
+          name: 'Dima',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magnaLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt',
+        },
+        anton: {
+          name: 'Anton',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magnaLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt',
+        },
+        egor: {
+          name: 'Egor',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magnaLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt',
+        }
+      };
+  
+      //выбираем дефолтного юзера
+      const DEFAULT_SLIDER_USER = 'dima';
+  
+      //выбираем шаблон имени + описания чтобы сюда рендерить текст с именем и инфо о юзере
+      const sliderUserNameTemplate = document.getElementById('sliderUserName');
+      const sliderUserDescriptionTemplate = document.getElementById('sliderUserDescription');
 
-    const firstMember = document.querySelector('.first-member');
-    const firstMemberImage = document.querySelector('.first-member img');
+      //при загрузке контента, один раз вызываем функцию чтобы установить дефолтное имя и описание пользователя
+      setUserData(DEFAULT_SLIDER_USER);
 
-    const secondMember = document.querySelector('.second-member');
-    const secondMemberImage = document.querySelector('.second-member img');
+      //выбираем все слайды по которым можно кликнуть
+      const slides = document.querySelectorAll('.new-slide');
 
-    const thirdMember = document.querySelector('.third-member');
-    const thirdMemberImage = document.querySelector('.third-member img');
+      function setUserData(name){
+        sliderUserNameTemplate.innerText = USERS[name].name;
+        sliderUserDescriptionTemplate.innerText = USERS[name].description;
+      };
 
-    let newSlidesLength = document.querySelectorAll('.new-slides').length;
+      //функция меняющая слайдер местами
+      function swapSlides(clickedSlide){
+        const slidesContainer = document.querySelector('.team-members');
+        const slidesContainerGridTemplate = slidesContainer.style.gridTemplateAreas;
 
-    function reverse1() {
-      if(firstMember.classList.contains('first-member-start-position')) {
-        firstMember.classList.remove('first-member-start-position');
-        firstMember.classList.add('first-member-center-position');
-        firstMemberImage.style.width = '160px';
+        // массив с именами до смены слайда
+        const namesArray = slidesContainerGridTemplate.split(' ').map(item => item.replace('"', ''));
+
+        // индекс среднег оэлемента массива
+        const arrMiddle = Math.floor(namesArray.length / 2);
+
+        // значение среднего элмента массива
+        const middleElementName = namesArray[arrMiddle];
+
+        // имя кликнутого слайда
+        const clickedSlideIndex = namesArray.indexOf(clickedSlide);
+
+        namesArray[arrMiddle] = clickedSlide;
+        namesArray[clickedSlideIndex] = middleElementName;
+
+        const newTemplate = namesArray.join(' ');
+
+        slidesContainer.style.gridTemplateAreas = `"${newTemplate}"`;
       }
-    }
 
-    firstMember.addEventListener('click', reverse1);
- 
+      slides.forEach(slide => {
+        slide.addEventListener('click', (event) => {
+          //устанавливаем имя и описание пользователя
+          const clickedDiv = event.target;
+          const clickedDivName = clickedDiv.dataset.user;
+
+          setUserData(clickedDivName);
+          swapSlides(clickedDivName);
+        });
+      });
+    });
 
 
   </script>
