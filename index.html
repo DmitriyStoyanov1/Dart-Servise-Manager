@@ -479,20 +479,23 @@
           eiusmod tempor incididunt ut labore et dolore magna</p>
 
       </div>
-      <div class="team-members" style="grid-template-areas: 'lora max dima anton egor';">
-        <div class="new-slide" data-user="lora" style="grid-area: lora;">
+      <div class="team-members">
+        <div class="new-slide" data-user="lora" style="position: absolute; left: 0;">
           <img src="images/Ellipse 3 copy 2.png">
         </div>
-        <div class="new-slide" data-user="max" style="grid-area: max;">
+        <div class="new-slide" data-user="max" style="position: absolute; left: 0;">
           <img src="images/Ellipse 3 copy 2.png">
         </div>
-        <div class="new-slide new-slide-active" data-user="dima" style="grid-area: dima;">
+        <div class="new-slide new-slide-active" data-user="dima" style="position: absolute; left: 0;">
+          <img src="images/Ellipse 3 copy 2.png">
+        </div>
+        <!-- <div class="new-slide new-slide-active" data-user="dima" style="position: absolute; left: 0;">
           <img src="images/team-member.png">
-        </div>
-        <div class="new-slide" data-user="anton" style="grid-area: anton;">
+        </div> -->
+        <div class="new-slide" data-user="anton" style="position: absolute; left: 0;">
           <img src="images/Ellipse 3 copy 2.png">
         </div>
-        <div class="new-slide" data-user="egor" style="grid-area: egor;">
+        <div class="new-slide" data-user="egor" style="position: absolute; left: 0;">
           <img src="images/Ellipse 3 copy.png">
         </div>
       </div>
@@ -696,39 +699,49 @@
         sliderUserDescriptionTemplate.innerText = USERS[name].description;
       };
 
-      //функция меняющая слайдер местами
-      function swapSlides(clickedSlide){
-        const slidesContainer = document.querySelector('.team-members');
-        const slidesContainerGridTemplate = slidesContainer.style.gridTemplateAreas;
+      const middleSlideIndex = Math.floor(slides.length / 2);
+      let centerSlide = document.querySelectorAll('.new-slide')[middleSlideIndex];
 
-        // массив с именами до смены слайда
-        const namesArray = slidesContainerGridTemplate.split(' ').map(item => item.replace('"', ''));
+      //Меняем слайды местами
+      function swapSlides(clickedSlide) {
+        const centerSlideWidth = centerSlide.offsetWidth;
 
-        // индекс среднег оэлемента массива
-        const arrMiddle = Math.floor(namesArray.length / 2);
+        const centerSlidePosition = centerSlide.style.left;
+        const clickedSlidePosition = clickedSlide.style.left;
 
-        // значение среднего элмента массива
-        const middleElementName = namesArray[arrMiddle];
+        centerSlide.classList.remove('new-slide-active');
+        clickedSlide.classList.add('new-slide-active');
 
-        // имя кликнутого слайда
-        const clickedSlideIndex = namesArray.indexOf(clickedSlide);
+        centerSlide.style.left = clickedSlidePosition;
+        clickedSlide.style.left = centerSlidePosition;
 
-        namesArray[arrMiddle] = clickedSlide;
-        namesArray[clickedSlideIndex] = middleElementName;
-
-        const newTemplate = namesArray.join(' ');
-
-        slidesContainer.style.gridTemplateAreas = `"${newTemplate}"`;
+        centerSlide = clickedSlide;
       }
 
-      slides.forEach(slide => {
+      const interval = setInterval(function(){
+        const randomSlideIndex = Math.random() * (slides.length - 0) + 0;
+        slides[Math.floor(randomSlideIndex)].click();
+      }, 250);
+
+      slides.forEach((slide, index) => {
+        //При загрузке проставляем слайдам дефолтные значения позиционирования (left)
+        const SLIDE_OFFSET = 130;
+        const CENTER_SLIDE_SIZE = document.querySelector('.new-slide-active').offsetWidth;
+        const middleIndex = Math.floor(slides.length / 2);
+
+        if(index > middleIndex) {
+          slide.style.left = (SLIDE_OFFSET * index + (CENTER_SLIDE_SIZE / 2)) + 'px';
+        } else {
+          slide.style.left = (SLIDE_OFFSET * index) + 'px';
+        }
+
         slide.addEventListener('click', (event) => {
           //устанавливаем имя и описание пользователя
           const clickedDiv = event.target;
           const clickedDivName = clickedDiv.dataset.user;
 
           setUserData(clickedDivName);
-          swapSlides(clickedDivName);
+          swapSlides(clickedDiv);
         });
       });
     });

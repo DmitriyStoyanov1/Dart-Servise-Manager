@@ -552,7 +552,7 @@ header .container {
 .team-members {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    position: relative;
     padding-top: 65px;
     padding-bottom: 20px;
     position: relative;
@@ -605,18 +605,22 @@ header .container {
 }
 
 .team-members {
-    display: grid;
-    grid-auto-flow: column;
     transition: grid-template-areas 1s ease-in-out;
 }
 
 .team-members .new-slide {
+    position: absolute;
     cursor: pointer;
     transition: 0.3s ease;
 }
 
 .team-members .new-slide img {
     pointer-events: none;
+}
+
+.team-members .new-slide.new-slide-active img {
+    width: 200px;
+    height: 200px;
 }
 
 .team.text-align-center p {
@@ -656,10 +660,6 @@ header .container {
 
 .social-networks i:not(:last-of-type) {
     padding-right: 17px;
-}
-
-.team-members div:not(:last-of-type) {
-    padding-right: 20px;
 }
 
 .contact-wrapper .title.text-align-center p {
