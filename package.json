@@ -1,0 +1,22 @@
+{
+  "name": "dart-servise-manager",
+  "version": "1.0.0",
+  "description": "dima first nodejs project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DmitriyStoyanov1/Dart-Servise-Manager.git"
+  },
+  "author": "dmitriy stoyanov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DmitriyStoyanov1/Dart-Servise-Manager/issues"
+  },
+  "homepage": "https://github.com/DmitriyStoyanov1/Dart-Servise-Manager#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

@@ -535,23 +535,22 @@
 
 
       <div class="form">
-        <form>
+        <form id="form">
+          <input class="form-stilization" type="text" placeholder="First Name" name="firstName">
+          <input class="form-stilization" type="text" placeholder="Last Name" name="lastName">
+          <input class="form-stilization" type="text" placeholder="Email" name="email">
+          <input class="form-stilization" type="text" placeholder="Phone" name="phone">
+          <textarea class="form-stilization" placeholder="Message" name="message"></textarea>
 
-          <input class="form-stilization" type="text" value="First Name" name="First Name">
-          <input class="form-stilization" type="text" value="Last Name" name="Last Name">
-          <input class="form-stilization" type="text" value="Email" name="Email">
-          <input class="form-stilization" type="text" value="Phone" name="Phone">
-          <textarea class="form-stilization">Message</textarea>
-
+          <div class="form-sending-data">
+            <div class="checkbox">
+              <input type="checkbox" name="isWantSubsribe" id="check-id">
+              <label for="check-id">subscribe to the newsletter</label>
+            </div>
+            <button type="submit" class="button shadow">SEND</button>
+          </div>
         </form>
 
-        <div class="form-sending-data">
-          <div class="checkbox">
-            <input type="checkbox" id="check-id">
-            <label for="check-id">subscribe to the newsletter</label>
-          </div>
-          <a href="#" class="button shadow">SEND</a>
-        </div>
       </div>
 
 
@@ -718,11 +717,6 @@
         centerSlide = clickedSlide;
       }
 
-      const interval = setInterval(function(){
-        const randomSlideIndex = Math.random() * (slides.length - 0) + 0;
-        slides[Math.floor(randomSlideIndex)].click();
-      }, 250);
-
       slides.forEach((slide, index) => {
         //При загрузке проставляем слайдам дефолтные значения позиционирования (left)
         const SLIDE_OFFSET = 130;
@@ -746,7 +740,55 @@
       });
     });
 
+    // Кодим МегаФорму
+    const form = document.getElementById('form');
+    const formCheckBoxes = document.querySelectorAll('#form input[type="checkbox"]');
+    
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
 
+      const formData = new FormData(form);
+
+      // вручную добавляем в формдату все чекбоксы
+      formCheckBoxes.forEach(checkbox => {
+        formData.append(checkbox.name, Boolean(checkbox.checked));
+      })
+
+      // данные для отправки на сервер, объект заполняется циклом который ниже
+      const dataForServer = {};
+
+      for(const input of formData) {
+        // input это массив вида ['имя_инпута', 'вэлью инпута']
+        const name = input[0];
+        const value = input[1];
+
+        dataForServer[name] = value;
+        
+        if(name === 'isWantSubsribe'){
+          if(value === "false"){
+            dataForServer[name] = false;
+          } else {
+            dataForServer[name] = true;
+          }
+        }
+      };
+
+      // отправим
+      fetch('http://localhost:3000/form', {
+        method: 'POST',
+        body: JSON.stringify(dataForServer),
+        headers: {
+          'Content-type': 'application/json'
+        }
+      })
+      .then(async response => {
+        const serverResponse = await response.json();
+
+        alert(serverResponse.response);
+      })
+
+      console.log(dataForServer, 'dataForServer');
+    });
   </script>
 
 </body>
