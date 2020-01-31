@@ -789,7 +789,74 @@
 
       console.log(dataForServer, 'dataForServer');
     });
+
+    function customFetchXHR(url, callback){
+      const xhr = new XMLHttpRequest();
+
+      xhr.open('GET', url, true);
+
+      xhr.send();
+
+      xhr.onreadystatechange = function() {
+        if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+          callback(xhr.responseText);
+        };
+      }
+    }
+    customFetchXHR('http://www.mocky.io/v2/5e3478db3000006b00d964e6', paintDiv);
+
+    function customFetchPromise(url){
+      const request = new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+
+        xhr.open('GET', url, true);
+
+        xhr.send();
+
+        xhr.onreadystatechange = function() {
+          if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            resolve(xhr.responseText);
+          };
+        }
+      });
+
+      return request;
+    }
+
+    customFetchPromise('http://www.mocky.io/v2/5e3478db3000006b00d964e6').then(data => {
+      paintDiv(data);
+    });
+
+    function paintDiv(data) {
+      const jsObject = JSON.parse(data);
+
+      document.body.innerHTML = `<div>${jsObject.name}</div> <div>${jsObject.lastName}</div> <div>${jsObject.occupation}</div>`;
+    }
+
+    // function http(direction, data){
+    //   if(direction === 'server'){
+    //     return JSON.stringify(data);
+    //   } else {
+    //     return JSON.parse(data);
+    //   }
+    // }
+
+    // const request = fetch('http://www.mocky.io/v2/5e3478db3000006b00d964e6')
+    //   .then(data => {
+    //     return data.json();
+    //   })
+    //   .then(data => {
+    //     console.log(data, 'data');
+    //   });
+
+    // const dimaRequest = fetch('http://www.mocky.io/v2/5e3478db3000006b00d964e6');
+
+    // if(dimaRequest) {
+    //   console.log(dimaRequest, 'dimaRequest');
+    // }
+
   </script>
+
 
 </body>
 
